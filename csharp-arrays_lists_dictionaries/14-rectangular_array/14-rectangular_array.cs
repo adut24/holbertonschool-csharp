@@ -10,8 +10,14 @@ namespace _14_rectangular_array
             numbers[2, 2] = 1;
             for (int i = 0; i < numbers.GetLength(0); i++)
             {
-                for (int j = 0; j < numbers.GetLength(1); j++)
-                    Console.Write(numbers[i, j] + " ");
+                int lengthColumn = numbers.GetLength(1);
+                for (int j = 0; j < lengthColumn; j++)
+                {
+                    Console.Write(numbers[i, j]);
+                    if (j < lengthColumn - 1)
+                        Console.Write(" ");
+                }
+
                 Console.WriteLine();
             }
         }
