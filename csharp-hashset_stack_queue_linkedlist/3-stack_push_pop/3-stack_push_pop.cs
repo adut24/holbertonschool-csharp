@@ -13,11 +13,14 @@ class MyStack
             Console.WriteLine($"Top item: {aStack.Peek()}");
         bool hasObject = aStack.Contains(search);
         Console.WriteLine($"Stack contains \"{search}\": {hasObject}");
-        for (int i = 0; i < count; i++)
+        if (hasObject)
         {
-            if (aStack.Peek() == search)
-                i = count;
-            aStack.Pop();
+            for (int i = 0; i < count; i++)
+            {
+                if (aStack.Peek() == search)
+                    i = count;
+                aStack.Pop();
+            }
         }
         aStack.Push(newItem);
         return aStack;
