@@ -7,12 +7,14 @@ class LList
 		LinkedListNode<int> newNode = new LinkedListNode<int>(n);
 		foreach (int value in myLList)
 		{
-			if (value > newNode.Value)
+			if (value > n)
 			{
 				myLList.AddBefore(myLList.Find(value), newNode);
 				break;
 			}
 		}
+		if (!myLList.Contains(n))
+			myLList.AddLast(newNode);
 		return newNode;
 	}
 }
