@@ -1,5 +1,5 @@
 # holbertonschool-csharp
-This repository contains 2 projects:
+This repository contains 4 projects:
 - [C# - Hello, World](./csharp-hello_world/)
 - [C# - if/else, loops, functions](./csharp-ifelse_loops_methods/)
 - [C# - Data Structures: Arrays, Lists, Dictionaries](./csharp-arrays_lists_dictionaries/)
