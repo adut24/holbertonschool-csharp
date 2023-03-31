@@ -2,6 +2,8 @@
 This repository contains 2 projects:
 - [C# - Hello, World](./csharp-hello_world/)
 - [C# - if/else, loops, functions](./csharp-ifelse_loops_methods/)
+- [C# - Data Structures: Arrays, Lists, Dictionaries](./csharp-arrays_lists_dictionaries/)
+- [C# - Data Structures: HashSet, Stack, Queue, LinkedList](./csharp-hashset_stack_queue_linkedlist/)
 
 ## Learning Objectives
 ### [C# - Hello, World](./csharp-hello_world/)
@@ -20,3 +22,23 @@ This repository contains 2 projects:
 - How to declare methods within a class
 - How to call public methods from another class
 - What is passing by reference and passing by value
+
+### [C# - Data Structures: Arrays, Lists, Dictionaries](./csharp-arrays_lists_dictionaries/)
+- How to create and use arrays
+- What are Collections in C#
+- How to create and use lists
+- What is the difference between arrays and lists in C#
+- When would you use an array vs a list
+- How to create and use dictionaries
+- What is the difference between dictionary and hashtables in C#
+- When would you use a dictionary vs a hashtable
+- How to use `foreach`
+
+### [C# - Data Structures: HashSet, Stack, Queue, LinkedList](./csharp-hashset_stack_queue_linkedlist/)
+- How to create and use arrays
+- What are Collections in C#?
+- How to create and use hashsets
+- How to create and use stacks
+- How to create and use queues
+- How to create and use linked lists
+- How to use `foreach`
