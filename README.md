@@ -1,4 +1,6 @@
 # holbertonschool-csharp
+![C#](https://i.imgur.com/CISqheO.jpg)
+
 This repository contains 4 projects:
 - [C# - Hello, World](./csharp-hello_world/)
 - [C# - if/else, loops, functions](./csharp-ifelse_loops_methods/)
