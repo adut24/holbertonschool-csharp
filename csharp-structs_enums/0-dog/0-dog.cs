@@ -1,6 +1,6 @@
 ﻿enum Rating
 {
 	Good,
-    Great,
-    Excellent
+	Great,
+	Excellent
 }
