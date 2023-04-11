@@ -14,7 +14,7 @@ class List
 				Console.WriteLine(myList[i]);
 				elementsPrinted++;
 			}
-			catch (IndexOutOfRangeException)
+			catch (ArgumentOutOfRangeException)
 			{
 			}
 		}
