@@ -1,11 +1,13 @@
 # holbertonschool-csharp
 ![C#](https://i.imgur.com/CISqheO.jpg)
 
-This repository contains 4 projects:
+This repository contains 6 projects:
 - [C# - Hello, World](./csharp-hello_world/)
 - [C# - if/else, loops, functions](./csharp-ifelse_loops_methods/)
 - [C# - Data Structures: Arrays, Lists, Dictionaries](./csharp-arrays_lists_dictionaries/)
 - [C# - Data Structures: HashSet, Stack, Queue, LinkedList](./csharp-hashset_stack_queue_linkedlist/)
+- [C# - Exceptions](./csharp-exceptions/)
+- [C# - Structs, Enumerations](./csharp-structs_enums/)
 
 ## Learning Objectives
 ### [C# - Hello, World](./csharp-hello_world/)
@@ -44,3 +46,19 @@ This repository contains 4 projects:
 - How to create and use queues
 - How to create and use linked lists
 - How to use `foreach`
+
+### [C# - Exceptions](./csharp-exceptions/)
+- What are exceptions and when to use them
+- What is the purpose of catching exceptions
+- How to handle exceptions
+- How to use `try`, `catch`, `finally`
+- How to raise built-in exceptions
+- When to implement clean-up actions after exceptions
+
+### [C# - Structs, Enumerations](./csharp-structs_enums/)
+- What is a struct
+- What is a constructor
+- What is a field
+- What is a property
+- What is an enumeration and when to use them
+- What does `toString` do and how to override it
