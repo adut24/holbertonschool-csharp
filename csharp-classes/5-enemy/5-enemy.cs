@@ -40,10 +40,10 @@ namespace Enemies
 		/// <returns>The health value.</returns>
 		public int GetHealth() => health;
 
-        /// <summary>
-        /// Gets the name and health of the zombie.
-        /// </summary>
-        /// <returns>String containing the zombie's name and health.</returns>
+		/// <summary>
+		/// Gets the name and health of the zombie.
+		/// </summary>
+		/// <returns>String containing the zombie's name and health.</returns>
 		public override string ToString() => $"Zombie Name: {name} / Total Health: {health}";
 	}
 }

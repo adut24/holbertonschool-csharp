@@ -4,6 +4,6 @@
 	/// Represents a zombie enemy
 	/// </summary>
 	class Zombie
-    {
-    }
+	{
+	}
 }

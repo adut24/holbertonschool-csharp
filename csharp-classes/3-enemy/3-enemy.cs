@@ -27,10 +27,10 @@ namespace Enemies
 			health = value >= 0 ? value : throw new ArgumentException("Health must be greater than or equal to 0");
 		}
 
-        /// <summary>
-        /// Get the health of the zombie instance.
-        /// </summary>
-        /// <returns>The health value.</returns>
+		/// <summary>
+		/// Get the health of the zombie instance.
+		/// </summary>
+		/// <returns>The health value.</returns>
 		public int GetHealth() => health;
 	}
 }

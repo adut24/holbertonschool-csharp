@@ -13,11 +13,11 @@ namespace Enemies
 		public int health;
 		private string name = "(No name)";
 
-        /// <summary>
-        /// Gets or sets the name of the zombie.
-        /// </summary>
-        /// <value>Name of the zombie</value>
-        public string Name { get => name; set => name = value; }
+		/// <summary>
+		/// Gets or sets the name of the zombie.
+		/// </summary>
+		/// <value>Name of the zombie</value>
+		public string Name { get => name; set => name = value; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Zombie"/>class.
