@@ -24,9 +24,7 @@ namespace Enemies
 		/// <exception cref="ArgumentException"><paramref name="value"/> is negative</exception>
 		public Zombie(int value)
 		{
-			if (value < 0)
-				throw new ArgumentException("Health must be greater than or equal to 0");
-			health = value;
+			health = value >= 0 ? value : throw new ArgumentException("Health must be greater than or equal to 0");
 		}
 	}
 }
