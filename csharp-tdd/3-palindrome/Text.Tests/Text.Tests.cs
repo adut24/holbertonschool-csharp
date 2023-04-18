@@ -3,17 +3,17 @@ using Text;
 
 namespace Text.Tests
 {
-    /// <summary>
-    /// Tests the <see cref="Str"/> class.
-    /// </summary>
-    public class Tests
-    {
-        /// <summary>
-        /// Tests with a string that contains upper case.
-        /// </summary>
-        [Test]
-        public void TestNotCaseSensitive()
-        {
+	/// <summary>
+	/// Tests the <see cref="Str"/> class.
+	/// </summary>
+	public class Tests
+	{
+		/// <summary>
+		/// Tests with a string that contains upper case.
+		/// </summary>
+		[Test]
+		public void TestNotCaseSensitive()
+		{
 			bool result = Str.IsPalindrome("Racecar");
 			Assert.AreEqual(true, result);
 		}
@@ -47,5 +47,15 @@ namespace Text.Tests
 			bool result = Str.IsPalindrome(121.ToString());
 			Assert.AreEqual(true, result);
 		}
-    }
+
+		/// <summary>
+		/// Tests with an empty string.
+		/// </summary>
+		[Test]
+		public void TestWithEmptyString()
+		{
+			bool result = Str.IsPalindrome("");
+			Assert.AreEqual(true, result);
+		}
+	}
 }
