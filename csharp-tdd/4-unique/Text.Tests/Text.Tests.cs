@@ -67,5 +67,15 @@ namespace Text.Tests
 			int result = Str.UniqueChar("a");
 			Assert.AreEqual(0, result);
 		}
+
+		/// <summary>
+		/// Tests with the unique character in the middle.
+		/// </summary>
+		[Test]
+		public void TestWithMiddleUnique()
+		{
+			int result = Str.UniqueChar("aaaabaaaa");
+			Assert.AreEqual(4, result);
+		}
 	}
 }
