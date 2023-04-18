@@ -25,7 +25,7 @@ namespace Tests
 			{
 				{0, 1, 1},
 				{2, 2, 3},
-                {3, 4, 4}
+				{3, 4, 4}
 			};
 			Assert.AreEqual(expectedResult, result);
 		}
@@ -33,8 +33,8 @@ namespace Tests
 		/// <summary>
 		/// Tests when the number to divide to is 0.
 		/// </summary>
-        [Test]
-        public void TestWithDivideByZero()
+		[Test]
+		public void TestWithDivideByZero()
 		{
 			int[,] matrix = new int[,]
 			{
@@ -49,9 +49,9 @@ namespace Tests
 		/// <summary>
 		/// Tests when the matrix is null.
 		/// </summary>
-        [Test]
-        public void TestWithMatrixNull()
-        {
+		[Test]
+		public void TestWithMatrixNull()
+		{
 			int[,] result = Matrix.Divide(null, 9);
 			Assert.AreEqual(null, result);
 		}
