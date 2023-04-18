@@ -5,14 +5,14 @@ using NUnit.Framework;
 
 namespace MyMath.Tests
 {
-    public class Tests
-    {
-        /// <summary>
-        /// Tests with only positive int.
-        /// </summary>
-        [Test]
-        public void TestWithOnlyPositiveInt()
-        {
+	public class Tests
+	{
+		/// <summary>
+		/// Tests with only positive int.
+		/// </summary>
+		[Test]
+		public void TestWithOnlyPositiveInt()
+		{
 			List<int> numbers = new List<int>() { 0, 5, 4, 43, 3, 5};
 			int result = Operations.Max(numbers);
 			Assert.AreEqual(43, result);
@@ -61,5 +61,5 @@ namespace MyMath.Tests
 			int result = Operations.Max(numbers);
 			Assert.AreEqual(-5, result);
 		}
-    }
+	}
 }
