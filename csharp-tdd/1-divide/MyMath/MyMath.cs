@@ -10,7 +10,7 @@ namespace MyMath
 	public static class Matrix
 	{
 		/// <summary>
-		/// Divides all elements in <paramref name="matrix"/> by <paramref name="num"/>.
+		/// Divides all elements in matrix by num.
 		/// </summary>
 		/// <param name="matrix">Matrix to divide.</param>
 		/// <param name="num">Integer to divide matrix by.</param>
