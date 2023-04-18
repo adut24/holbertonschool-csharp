@@ -44,21 +44,5 @@ namespace Tests
 			int[,] result = Matrix.Divide(null, 9);
 			Assert.AreEqual(null, result);
 		}
-		{
-			int[,] matrix = new int[,]
-			{
-				{1, 2, 3},
-				{4, 5, 6},
-				{7, 8, 9}
-			};
-			int[,] result = Matrix.Divide(matrix, -2);
-			int[,] expectedResult = new int[,]
-			{
-				{0, -1, -1},
-				{-2, -2, -3},
-				{-3, -4, -4}
-			};
-			Assert.AreEqual(expectedResult, result);
-		}
 	}
 }
