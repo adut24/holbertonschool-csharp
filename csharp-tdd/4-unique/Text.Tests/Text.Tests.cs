@@ -15,7 +15,7 @@ namespace Text.Tests
 		public void TestWithNormalString()
 		{
 			int result = Str.UniqueChar("Hello");
-			Assert.AreEqual(1, result);
+			Assert.AreEqual(0, result);
 		}
 
 		/// <summary>
@@ -46,6 +46,26 @@ namespace Text.Tests
 		{
 			int result = Str.UniqueChar("aaaaaaaab");
 			Assert.AreEqual(8, result);
+		}
+
+		/// <summary>
+		/// Tests with only the first character unique.
+		/// </summary>
+		[Test]
+		public void TestWithFirstUnique()
+		{
+			int result = Str.UniqueChar("Heeeeeeeee");
+			Assert.AreEqual(0, result);
+		}
+
+		/// <summary>
+		/// Tests with only one character.
+		/// </summary>
+		[Test]
+		public void TestWithOneChar()
+		{
+			int result = Str.UniqueChar("a");
+			Assert.AreEqual(0, result);
 		}
 	}
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Text
 {
@@ -14,12 +16,17 @@ namespace Text
 		/// <returns>The index of the character or -1 if there's none.</returns>
 		public static int UniqueChar(string s)
 		{
-			for (int i = 1; i < s.Length; i++)
+			if (s.Length == 1)
+				return 0;
+
+			try
 			{
-				if (s[i] != s[0])
-					return i;
+				return s.IndexOf(s.GroupBy(c => c).First(ch => ch.Count() == 1).Key);
 			}
-			return -1;
+			catch (InvalidOperationException)
+			{
+				return -1;
+			}
 		}
 	}
 }
