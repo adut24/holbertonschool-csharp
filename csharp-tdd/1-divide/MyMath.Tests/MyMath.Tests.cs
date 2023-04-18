@@ -3,9 +3,14 @@ using NUnit.Framework;
 
 namespace Tests
 {
+	/// <summary>
+	/// Tests different case for the <see cref="Matrix"/> class.
+	/// </summary>
 	public class Tests
 	{
-
+		/// <summary>
+		///	Tests a normal case of divide.
+		/// </summary>
 		[Test]
 		public void TestWithNormalDivide()
 		{
@@ -25,6 +30,9 @@ namespace Tests
 			Assert.AreEqual(expectedResult, result);
 		}
 
+		/// <summary>
+		/// Tests when the number to divide to is 0.
+		/// </summary>
         [Test]
         public void TestWithDivideByZero()
 		{
@@ -38,6 +46,9 @@ namespace Tests
 			Assert.AreEqual(null, result);
 		}
 
+		/// <summary>
+		/// Tests when the matrix is null.
+		/// </summary>
         [Test]
         public void TestWithMatrixNull()
         {
