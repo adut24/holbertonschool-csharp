@@ -13,7 +13,7 @@ namespace MyMath
         /// Finds the max value in a list of int.
         /// </summary>
         /// <param name="nums">List of int.</param>
-        /// <returns>The max value</returns>
+        /// <returns>The max value.</returns>
 		public static int Max(List<int> nums)
         {
             if (nums.Count == 0)

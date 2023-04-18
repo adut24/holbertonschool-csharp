@@ -1,7 +1,7 @@
 using MyMath;
 using NUnit.Framework;
 
-namespace Tests
+namespace MyMath.Tests
 {
 	/// <summary>
 	/// Tests different case for the <see cref="Matrix"/> class.
