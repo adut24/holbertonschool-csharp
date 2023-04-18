@@ -37,5 +37,15 @@ namespace Text.Tests
 			bool result = Str.IsPalindrome("A man, a plan, a canal: Panama.");
 			Assert.AreEqual(true, result);
 		}
+
+		/// <summary>
+		/// Tests with an integer converted into a string.
+		/// </summary>
+		[Test]
+		public void TestWithIntToString()
+		{
+			bool result = Str.IsPalindrome(121.ToString());
+			Assert.AreEqual(true, result);
+		}
     }
 }
