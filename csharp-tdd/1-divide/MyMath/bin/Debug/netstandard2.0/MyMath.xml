@@ -10,7 +10,7 @@
         <member name="M:MyMath.Matrix.Divide(System.Int32[0:,0:],System.Int32)">
             <summary>Divides all elements in <paramref name="matrix"/> by <paramref name="num"/>.</summary>
             <param name="matrix">Matrix to divide.</param>
-            <param name="num">Integer to divide matrix by.</param>
+            <param name="num">Integer to divide <paramref name="matrix"/> by.</param>
             <returns> The new matrix or null if <paramref name="matrix"/> is null.</returns>
         </member>
     </members>
