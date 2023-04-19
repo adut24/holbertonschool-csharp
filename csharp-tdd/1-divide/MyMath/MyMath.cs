@@ -7,7 +7,7 @@ namespace MyMath
 	/// <summary>
 	/// Represents the different actions possible with a matrix.
 	/// </summary>
-	public class Matrix
+	public static class Matrix
     {
 		/// <summary>
 		/// Divides all elements in <paramref name="matrix"/> by <paramref name="num"/>.
