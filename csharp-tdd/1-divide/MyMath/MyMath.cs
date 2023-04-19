@@ -7,10 +7,10 @@ namespace MyMath
 	/// <summary>
 	/// Represents the different actions possible with a matrix.
 	/// </summary>
-	public static class Matrix
-	{
+	public class Matrix
+    {
 		/// <summary>
-		/// Divides all elements in matrix by num.
+		/// Divides all elements in <paramref name="matrix"/> by <paramref name="num"/>.
 		/// </summary>
 		/// <param name="matrix">Matrix to divide.</param>
 		/// <param name="num">Integer to divide matrix by.</param>
@@ -37,5 +37,5 @@ namespace MyMath
 			}
 			return newMatrix;
 		}
-	}
+    }
 }
