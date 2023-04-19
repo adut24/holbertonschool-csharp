@@ -1,3 +1,4 @@
+using System.Reflection;
 using NUnit.Framework;
 using Text;
 
@@ -24,6 +25,13 @@ namespace Text.Tests
 		{
 			int result = Str.CamelCase("");
 			Assert.AreEqual(0, result);
+		}
+
+		[Test]
+		public void TestWithTwoWords()
+		{
+			int result = Str.CamelCase("holbertonSchool");
+			Assert.AreEqual(2, result);
 		}
 	}
 }
