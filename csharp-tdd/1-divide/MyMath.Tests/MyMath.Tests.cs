@@ -2,8 +2,14 @@ using NUnit.Framework;
 
 namespace MyMath.Tests
 {
+	/// <summary>
+	/// Tests the <see cref="MyMath"/> class.
+	/// </summary>
 	public class Tests
 	{
+		/// <summary>
+		/// Tests to divide the matrix by 2.
+		/// </summary>
 		[Test]
 		public void TestWithNormalDivide()
 		{
@@ -23,6 +29,9 @@ namespace MyMath.Tests
 			Assert.AreEqual(expectedResult, result);
 		}
 
+		/// <summary>
+		/// Tests to divide the matrix by 0.
+		/// </summary>
 		[Test]
 		public void TestWithDivideByZero()
 		{
@@ -36,6 +45,9 @@ namespace MyMath.Tests
 			Assert.AreEqual(null, result);
 		}
 
+		/// <summary>
+		/// Tests if the matrix is null.
+		/// </summary>
 		[Test]
 		public void TestWithMatrixNull()
 		{
