@@ -8,7 +8,7 @@ namespace MyMath
 	/// Represents the different actions possible with a matrix.
 	/// </summary>
 	public static class Matrix
-    {
+	{
 		/// <summary>
 		/// Divides all elements in <paramref name="matrix"/> by <paramref name="num"/>.
 		/// </summary>
@@ -36,5 +36,5 @@ namespace MyMath
 			}
 			return newMatrix;
 		}
-    }
+	}
 }

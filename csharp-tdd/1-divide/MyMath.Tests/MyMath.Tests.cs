@@ -3,8 +3,8 @@ using NUnit.Framework;
 
 namespace MyMath.Tests
 {
-    public class Tests
-    {
+	public class Tests
+	{
 		[Test]
 		public void TestWithNormalDivide()
 		{
@@ -43,5 +43,5 @@ namespace MyMath.Tests
 			int[,] result = Matrix.Divide(null, 9);
 			Assert.AreEqual(null, result);
 		}
-    }
+	}
 }
