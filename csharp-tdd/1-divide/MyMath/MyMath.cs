@@ -4,14 +4,10 @@ using System.Linq;
 
 namespace MyMath
 {
-	/// <summary>
-	/// Represents the different actions possible with a matrix.
-	/// </summary>
+	/// <summary> Represents the different actions possible with a matrix.</summary>
 	public static class Matrix
 	{
-		/// <summary>
-		/// Divides all elements in <paramref name="matrix"/> by <paramref name="num"/>.
-		/// </summary>
+		/// <summary>Divides all elements in <paramref name="matrix"/> by <paramref name="num"/>.</summary>
 		/// <param name="matrix">Matrix to divide.</param>
 		/// <param name="num">Integer to divide matrix by.</param>
 		/// <returns> The new matrix or null if <paramref name="matrix"/> is null.</returns>
