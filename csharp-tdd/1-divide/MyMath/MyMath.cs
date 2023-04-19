@@ -14,8 +14,7 @@ namespace MyMath
 		/// </summary>
 		/// <param name="matrix">Matrix to divide.</param>
 		/// <param name="num">Integer to divide matrix by.</param>
-		/// <returns> The new matrix or null</returns>
-		/// <exception cref="DivideByZeroException"><paramref name="num"/> can't be 0.</exception>
+		/// <returns> The new matrix or null if <paramref name="matrix"/> is null.</returns>
 		public static int[,] Divide(int[,] matrix, int num)
 		{
 			int[] matrixDivided;
