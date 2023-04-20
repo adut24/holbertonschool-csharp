@@ -1,13 +1,15 @@
 # holbertonschool-csharp
 ![C#](https://i.imgur.com/CISqheO.jpg)
 
-This repository contains 6 projects:
+This repository contains 8 projects:
 - [C# - Hello, World](./csharp-hello_world/)
 - [C# - if/else, loops, functions](./csharp-ifelse_loops_methods/)
 - [C# - Data Structures: Arrays, Lists, Dictionaries](./csharp-arrays_lists_dictionaries/)
 - [C# - Data Structures: HashSet, Stack, Queue, LinkedList](./csharp-hashset_stack_queue_linkedlist/)
 - [C# - Exceptions](./csharp-exceptions/)
 - [C# - Structs, Enumerations](./csharp-structs_enums/)
+- [C# - Classes and Namespaces](./csharp-classes/)
+- [C# - Test Driven Development](./csharp-tdd/)
 
 ## Learning Objectives
 ### [C# - Hello, World](./csharp-hello_world/)
@@ -62,3 +64,40 @@ This repository contains 6 projects:
 - What is a property
 - What is an enumeration and when to use them
 - What does `toString` do and how to override it
+
+### [C# - Classes and Namespaces](./csharp-classes/)
+- How to document C# code with XML comments
+- What is object-oriented programming?
+- What is a namespace
+- What is a class
+- What are objects and instances
+- What is the difference between a class and an object or instance
+- What is a field
+- What is a constructor
+- What is a property
+- How to use `get` and `set`
+- When to use a constructor and when to use a property
+- What is `this` and when to use it
+- What is a method
+- What are access modifiers
+- What is a static class
+- What is a static member
+- What is encapsulation
+- What is polymorphism
+- What is abstraction
+- What does `toString` do and how to override it
+- What is the difference between a class and a struct
+- When to use a class and when to use a struct
+- What is garbage collection in C#
+
+### [C# - Test Driven Development](./csharp-tdd/)
+- What are solutions in VSCode
+- How are solutions different from projects in VSCode
+- What is a class library
+- What is a unit test
+- What are the benefits of unit testing
+- How to create and run tests using NUnit
+- What is the Arrange, Act, Assert methodology
+- How to effectively name your unit tests
+- How to utilize the TDD approach
+- How to consider edge cases
