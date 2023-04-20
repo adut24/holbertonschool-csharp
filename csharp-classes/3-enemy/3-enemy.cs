@@ -7,10 +7,7 @@ namespace Enemies
 	/// </summary>
 	class Zombie
 	{
-		/// <summary>
-		/// Represents the zombie's life.
-		/// </summary>
-		public int health;
+		private int health;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Zombie"/>class.
