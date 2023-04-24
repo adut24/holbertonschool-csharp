@@ -13,15 +13,14 @@ static class Obj
 	public static void Print(object myObj)
 	{
 		Type objectType = myObj.GetType();
+		TypeInfo objectTypeInfo = objectType.GetTypeInfo();
+
 		Console.WriteLine($"{objectType.Name} Properties:");
-		foreach (PropertyInfo item in objectType.GetTypeInfo().DeclaredProperties)
-		{
-			Console.WriteLine(item.Name);
-		}
+		foreach (PropertyInfo property in objectTypeInfo.GetProperties())
+			Console.WriteLine(property.Name);
+
 		Console.WriteLine($"{objectType.Name} Methods:");
-		foreach (MethodInfo item in objectType.GetTypeInfo().DeclaredMethods)
-		{
-			Console.WriteLine(item.Name);
-		}
+		foreach (MethodInfo method in objectTypeInfo.GetMethods())
+			Console.WriteLine(method.Name);
 	}
 }
