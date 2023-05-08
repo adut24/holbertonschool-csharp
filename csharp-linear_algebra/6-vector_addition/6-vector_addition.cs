@@ -13,7 +13,7 @@ class VectorMath
 	/// <returns>-1 or the sum of the 2 vectors.</returns>
 	public static double[] Add(double[] vector1, double[] vector2)
 	{
-		if (vector1.Length != 2 && vector1.Length != 3 && vector2.Length != 2 && vector2.Length != 3 && vector1.Length != vector2.Length)
+		if (vector1.Length != 2 && vector1.Length != 3 || vector2.Length != 2 && vector2.Length != 3 || vector1.Length != vector2.Length)
 			return new double[] { -1 };
 
 		double[] sum = new double[vector1.Length];
