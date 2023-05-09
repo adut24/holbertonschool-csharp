@@ -31,8 +31,8 @@ class MatrixMath
 				temp = 0;
 				for (int k = 0; k < colMatrix1; k++)
 					temp += matrix1[i, k] * matrix2[k, j];
+				mul[i, j] = temp;
 			}
-			mul[i, j] = temp;
 		}
 		return mul;
 	}
