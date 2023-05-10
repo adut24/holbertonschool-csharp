@@ -5,12 +5,12 @@
 /// </summary>
 class MatrixMath
 {
-    /// <summary>
-    /// Rotate a 2D matrix.
-    /// </summary>
-    /// <param name="matrix">2D matrix to rotate</param>
-    /// <param name="angle">Angle in radian to rotate the </param>
-    /// <returns></returns>
+	/// <summary>
+	/// Rotate a 2D matrix.
+	/// </summary>
+	/// <param name="matrix">2D matrix to rotate</param>
+	/// <param name="angle">Angle in radian to rotate the </param>
+	/// <returns>A matrix containing -1 or the result of the rotation.</returns>
 	public static double[,] Rotate2D(double[,] matrix, double angle)
 	{
 		int rowLength = matrix.GetLength(0), colLength = matrix.GetLength(1);
@@ -18,10 +18,13 @@ class MatrixMath
 		if (rowLength != colLength)
 			return new double[,] { { -1 } };
 
+		double cosAngle = Math.Cos(angle);
+		double sinAngle = Math.Sin(angle);
+
 		double[,] rotationMatrix = new double[,]
 		{
-            {Math.Cos(angle), Math.Sin(angle)},
-            {-Math.Sin(angle), Math.Cos(angle)}
+			{cosAngle, sinAngle},
+			{-sinAngle, cosAngle}
 		};
 
 		return Multiply(matrix, rotationMatrix);
@@ -44,13 +47,12 @@ class MatrixMath
 			return new double[,] { { -1 } };
 
 		double[,] mul = new double[rowMatrix1, colMatrix2];
-		double temp = 0;
 
 		for (int i = 0; i < rowMatrix1; i++)
 		{
 			for (int j = 0; j < colMatrix2; j++)
 			{
-				temp = 0;
+				double temp = 0;
 				for (int k = 0; k < colMatrix1; k++)
 					temp += matrix1[i, k] * matrix2[k, j];
 				mul[i, j] = Math.Round(temp, 2);
