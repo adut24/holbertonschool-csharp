@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 /// Represents operations on vectors.
 /// </summary>
 class VectorMath
@@ -24,4 +22,3 @@ class VectorMath
 		return dotProduct;
 	}
 }
-
