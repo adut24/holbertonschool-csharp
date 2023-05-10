@@ -11,7 +11,7 @@ class VectorMath
     /// <returns>A vector with -1 or the cross product.</returns>
     public static double[] CrossProduct(double[] vector1, double[] vector2)
     {
-        if (vector1.Length != 3 && vector1.Length != vector2.Length)
+        if (vector1.Length != 3 && vector2.Length != 3)
             return new double[] { -1 };
 
         return new double[]
