@@ -27,7 +27,7 @@ class MatrixMath
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 2; j++)
-                transposedMatrix[i, j] /= determinant;
+                transposedMatrix[i, j] = Math.Round(transposedMatrix[i, j] / determinant, 2);
         }
         return transposedMatrix;
     }
