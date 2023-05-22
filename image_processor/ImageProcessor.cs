@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 /// <summary> Represents the possible actions on images. </summary>
@@ -26,7 +28,7 @@ class ImageProcessor
     }
 
     /* Inverts the colors of the image. */
-    private static void InvertColors(object obj)
+   private static void InvertColors(object obj)
     {
         string filename = (string)obj;
         string[] nameSplit = filename.Split('.');
@@ -34,24 +36,25 @@ class ImageProcessor
         string extension = nameSplit[1];
 
         Bitmap image = new Bitmap(filename);
+        BitmapData imageData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, image.PixelFormat);
+
+        int imageSize = imageData.Stride * image.Height;
+        byte[] imageBytes = new byte[imageSize];
+
+        /* Copies all the bytes from the image to the new array to modify them */
+        Marshal.Copy(imageData.Scan0, imageBytes, 0, imageSize);
 
         /* Inverts the pixels */
-        for (int y = 0; y < image.Height; y++)
+        for (int i = 0; i < imageSize; i += 4)
         {
-            for (int x = 0; x < image.Width; x++)
-            {
-                Color originalColor = image.GetPixel(x, y);
-                Color invertedColor = Color.FromArgb(
-                    255 - originalColor.R,
-                    255 - originalColor.G,
-                    255 - originalColor.B
-                );
-                image.SetPixel(x, y, invertedColor);
-            }
+            imageBytes[i] = (byte)(255 - imageBytes[i]);
+            imageBytes[i + 1] = (byte)(255 - imageBytes[i + 1]);
+            imageBytes[i + 2] = (byte)(255 - imageBytes[i + 2]);
         }
-
+        /* Returns all the new bytes to the bitmap to create the new image */
+        Marshal.Copy(imageBytes, 0, imageData.Scan0, imageSize);
+        image.UnlockBits(imageData);
         string invertedImagePath = fileName + "_inverse." + extension;
-        
         image.Save(invertedImagePath);
         /* Free the image */
         image.Dispose();
