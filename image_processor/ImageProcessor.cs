@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Threading;
+using System.Threading.Tasks;
 
 /// <summary> Represents the possible actions on images. </summary>
 class ImageProcessor
@@ -15,29 +15,23 @@ class ImageProcessor
     /* Inverts the images' colors in different threads and waits for the end of each threads. */
     private static void InvertColorsInParallel(string[] filenames)
     {
-        List<Thread> threads = new List<Thread>();
+        List<Task> tasks = new List<Task>();
 
         foreach (string filename in filenames)
-        {
-            Thread thread = new Thread(InvertColors);
-            thread.Start(filename);
-            threads.Add(thread);
-        }
+            tasks.Add(Task.Run(() => InvertColors(filename)));
 
-        foreach (Thread thread in threads)
-            thread.Join();
+        Task.WaitAll(tasks.ToArray());
     }
 
     /* Inverts the colors of the image. */
-   private static void InvertColors(object obj)
+   private static void InvertColors(string filename)
     {
-        string filename = (string)obj;
-        filename = Path.GetFileName(filename);
-        string[] nameSplit = filename.Split('.');
+        string basename = Path.GetFileName(filename);
+        string[] nameSplit = basename.Split('.');
         string name = nameSplit[0];
         string extension = nameSplit[1];
 
-        Bitmap image = new Bitmap("images/" + filename);
+        Bitmap image = new Bitmap("images/" + basename);
         BitmapData imageData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, image.PixelFormat);
 
         int imageSize = imageData.Stride * image.Height;
