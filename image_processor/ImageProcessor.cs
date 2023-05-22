@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -31,11 +33,12 @@ class ImageProcessor
    private static void InvertColors(object obj)
     {
         string filename = (string)obj;
+        filename = Path.GetFileName(filename);
         string[] nameSplit = filename.Split('.');
-        string fileName = nameSplit[0];
+        string name = nameSplit[0];
         string extension = nameSplit[1];
 
-        Bitmap image = new Bitmap(filename);
+        Bitmap image = new Bitmap("images/" + filename);
         BitmapData imageData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, image.PixelFormat);
 
         int imageSize = imageData.Stride * image.Height;
@@ -54,7 +57,7 @@ class ImageProcessor
         /* Returns all the new bytes to the bitmap to create the new image */
         Marshal.Copy(imageBytes, 0, imageData.Scan0, imageSize);
         image.UnlockBits(imageData);
-        string invertedImagePath = fileName + "_inverse." + extension;
+        string invertedImagePath = name + "_inverse." + extension;
         image.Save(invertedImagePath);
         /* Free the image */
         image.Dispose();
