@@ -9,62 +9,41 @@ static class ImageProcessor
 {
     /// <summary> Inverts the colors on the images contained in the array <paramref name="filenames"/>.</summary>
     /// <param name="filenames">Array of path to the images.</param>
-    public static void Inverse(string[] filenames)
-    {
-        int numberImages = filenames.Length;
-
-        Task[] tasks = new Task[numberImages];
-
-        for (int i = 0; i < numberImages; i++)
-        {
-            int index = i;
-            tasks[i] = Task.Run(() => InvertColors(filenames[index]));
-        }
-
-        Task.WaitAll(tasks);
-    }
+    public static void Inverse(string[] filenames) => Parallel.ForEach(filenames, InvertColors);
 
     /* Inverts the colors of the image. */
-   private static void InvertColors(string filename)
+    private static void InvertColors(string filename)
     {
         const string basePath = "images/";
-        string baseName = Path.GetFileName(filename);
-        string[] nameSplit = baseName.Split('.');
-        string name = nameSplit[0];
-        string extension = nameSplit[1];
+        string baseName = Path.GetFileNameWithoutExtension(filename);
+        string extension = Path.GetExtension(filename);
 
-        using (Bitmap image = new Bitmap(Path.Combine(basePath, baseName)))
+        using (Bitmap image = new Bitmap(Path.Combine(basePath, baseName + extension)))
         {
-            Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
+            int height = image.Height;
+            Rectangle rect = new Rectangle(0, 0, image.Width, height);
             BitmapData imageData = image.LockBits(rect, ImageLockMode.ReadWrite, image.PixelFormat);
             int stride = imageData.Stride;
-            int height = image.Height;
 
-            byte[] imageBytes = new byte[stride * height];
-            int lengthBytes = imageBytes.Length;
+            byte[] pixels = new byte[stride * height];
+            int imageLength = pixels.Length;
 
-            /* Copies all the bytes from the image to the new array to modify them */
-            Marshal.Copy(imageData.Scan0, imageBytes, 0, lengthBytes);
+            /* Copies all the integers from the image to the new array to modify them */
+            Marshal.Copy(imageData.Scan0, pixels, 0, imageLength);
 
             /* Inverts the pixels */
-            for (int y = 0; y < height; y++)
+            for (int i = 0; i < imageLength; i += 4)
             {
-                int rowOffset = y * stride;
-
-                for (int x = 0; x < stride; x += 4)
-                {
-                    int offset = rowOffset + x;
-                    imageBytes[offset] = (byte)(255 - imageBytes[offset]);
-                    imageBytes[offset + 1] = (byte)(255 - imageBytes[offset + 1]);
-                    imageBytes[offset + 2] = (byte)(255 - imageBytes[offset + 2]);
-                }
+                pixels[i] ^= 0xFF;
+                pixels[i + 1] ^= 0xFF;
+                pixels[i + 2] ^= 0xFF;
             }
 
-            /* Returns all the new bytes to the bitmap to create the new image */
-            Marshal.Copy(imageBytes, 0, imageData.Scan0, lengthBytes);
+            /* Returns all the new integers to the bitmap to create the new image */
+            Marshal.Copy(pixels, 0, imageData.Scan0, imageLength);
             image.UnlockBits(imageData);
 
-            image.Save($"{name}_inverse.{extension}");
+            image.Save($"{baseName}_inverse{extension}");
         }
     }
 }
