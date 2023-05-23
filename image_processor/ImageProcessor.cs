@@ -21,8 +21,7 @@ static class ImageProcessor
         using (Bitmap image = new Bitmap(Path.Combine(basePath, baseName + extension)))
         {
             int height = image.Height;
-            Rectangle rect = new Rectangle(0, 0, image.Width, height);
-            BitmapData imageData = image.LockBits(rect, ImageLockMode.ReadWrite, image.PixelFormat);
+            BitmapData imageData = image.LockBits(new Rectangle(0, 0, image.Width, height), ImageLockMode.ReadWrite, image.PixelFormat);
             int stride = imageData.Stride;
 
             byte[] pixels = new byte[stride * height];
