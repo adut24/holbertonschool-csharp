@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents operations on matrixes.
 /// </summary>
-class MatrixMath
+static class MatrixMath
 {
     /// <summary>
     /// Inverts a 2D matrix.
@@ -20,34 +20,18 @@ class MatrixMath
         if (determinant == 0)
             return new double[,] { { -1 } };
 
-        double[,] transposedMatrix = Transpose(matrix);
-        transposedMatrix[1, 0] = -transposedMatrix[1, 0];
-        transposedMatrix[0, 1] = -transposedMatrix[0, 1];
+        matrix[1, 0] = -matrix[1, 0];
+        matrix[0, 1] = -matrix[0, 1];
+        (matrix[1, 1], matrix[0, 0]) = (matrix[0, 0], matrix[1, 1]);
 
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 2; j++)
-                transposedMatrix[i, j] = Math.Round(transposedMatrix[i, j] / determinant, 2);
+                matrix[i, j] = Math.Round(matrix[i, j] / determinant, 2);
         }
-        return transposedMatrix;
-    }
-
-    /* Transposes a 2D matrix. */
-    private static double[,] Transpose(double[,] matrix)
-    {
-        double[,] transposedMatrix = new double[2, 2];
-
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
-                transposedMatrix[j, i] = matrix[i, j];
-        }
-        return transposedMatrix;
+        return matrix;
     }
 
     /* Calculates the determinant of a 2D matrix. */
-    private static double Determinant(double[,] matrix)
-    {
-        return Math.Round(matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0], 2);
-    }
+    private static double Determinant(double[,] matrix) => Math.Round((matrix[0, 0] * matrix[1, 1]) - (matrix[0, 1] * matrix[1, 0]), 2);
 }
