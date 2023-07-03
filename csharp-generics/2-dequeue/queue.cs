@@ -36,17 +36,18 @@ public class Queue<T>
     /// <param name="value"></param>
     public void Enqueue(T value)
     {
-        Node node = new Node(value);
+        Node newNode = new Node(value);
 
         if (head == null)
-            head = node;
+            head = newNode;
         else
         {
-            while (head.next != null)
-                head = head.next;
-            head.next = node;
+            Node node = head;
+            while (node.next != null)
+                node = node.next;
+            node.next = newNode;
         }
-        tail = node;
+        tail = newNode;
         count++;
     }
 
