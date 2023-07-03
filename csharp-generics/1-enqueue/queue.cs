@@ -21,8 +21,8 @@ public class Queue<T>
     /// </summary>
     public class Node
     {
-        internal T value = default;
-        internal Node next = default;
+        internal T value = default(T);
+        internal Node next = default(Node);
 
         /// <summary>
         /// Constructor for the node.
