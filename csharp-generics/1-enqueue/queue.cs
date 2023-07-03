@@ -46,6 +46,7 @@ public class Queue<T>
                 head = head.next;
             head.next = node;
         }
+        tail = node;
         count++;
     }
 
