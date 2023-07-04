@@ -4,9 +4,9 @@
 public abstract class Base
 {
     /// <summary>
-    /// Represents the name of the instance.
+    /// Gets the name of the instance.
     /// </summary>
-    public string name;
+    string name { get; }
 
     /// <summary>
     /// Returns a string representation of the instance.
@@ -66,6 +66,11 @@ public interface ICollectable
 public class TestObject : Base, IInteractive, IBreakable, ICollectable
 {
     /// <summary>
+    /// Gets and sets the name of the instance.
+    /// </summary>
+    public string name { get; set; }
+
+    /// <summary>
     /// Gets and sets the durability.
     /// </summary>
     /// <value>Durability value</value>
@@ -75,7 +80,6 @@ public class TestObject : Base, IInteractive, IBreakable, ICollectable
     /// Gets and sets if the collectable was collected.
     /// </summary>
     /// <value>True or False</value>
-
     public bool isCollected { get; set; }
 
     /// <summary>
@@ -97,5 +101,14 @@ public class TestObject : Base, IInteractive, IBreakable, ICollectable
     /// </summary>
     public void Collect()
     {
+    }
+
+    /// <summary>
+    /// Returns a string representation of the instance.
+    /// </summary>
+    /// <returns>The string representation of the instance.</returns>
+    public override string ToString()
+    {
+        return base.ToString();
     }
 }
