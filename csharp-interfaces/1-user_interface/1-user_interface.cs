@@ -77,7 +77,7 @@ public class TestObject : Base, IInteractive, IBreakable, ICollectable
     /// </summary>
     /// <value>True or False</value>
     public bool isCollected { get; set; }
-    
+
     /// <summary>
     /// Gets and sets the name of the instance.
     /// </summary>
