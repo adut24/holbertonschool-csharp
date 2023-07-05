@@ -5,19 +5,8 @@
 /// </summary>
 public class Player
 {
-    /// <summary>
-    /// Name of the player
-    /// </summary>
     private string name;
-
-    /// <summary>
-    /// Maximum health of the player
-    /// </summary>
     private float maxHp;
-
-    /// <summary>
-    /// Current health of the player
-    /// </summary>
     private float hp;
 
     /// <summary>
