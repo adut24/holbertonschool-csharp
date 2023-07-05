@@ -8,17 +8,17 @@ public class Player
     /// <summary>
     /// Name of the player
     /// </summary>
-    public string name;
+    private string name;
 
     /// <summary>
     /// Maximum health of the player
     /// </summary>
-    public float maxHp;
+    private float maxHp;
 
     /// <summary>
     /// Current health of the player
     /// </summary>
-    public float hp;
+    private float hp;
 
     /// <summary>
     /// Constructor.
@@ -29,9 +29,15 @@ public class Player
     {
         this.name = name;
         if (maxHp < 0)
+        {
             Console.WriteLine("maxHp must be greater than 0. maxHp set to 100f by default.");
+            maxHp = 100f;
+        }
         else
+        {
             this.maxHp = maxHp;
+        }
+
         hp = maxHp;
     }
 
