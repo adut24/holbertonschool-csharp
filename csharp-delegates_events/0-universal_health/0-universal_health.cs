@@ -1,0 +1,42 @@
+﻿using System;
+
+/// <summary>
+/// Represents the player character.
+/// </summary>
+public class Player
+{
+    /// <summary>
+    /// Name of the player
+    /// </summary>
+    public string name;
+
+    /// <summary>
+    /// Maximum health of the player
+    /// </summary>
+    public float maxHp;
+
+    /// <summary>
+    /// Current health of the player
+    /// </summary>
+    public float hp;
+
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="maxHp"></param>
+    public Player(string name = "Player", float maxHp = 100f)
+    {
+        this.name = name;
+        if (maxHp < 0)
+            Console.WriteLine("maxHp must be greater than 0. maxHp set to 100f by default.");
+        else
+            this.maxHp = maxHp;
+        hp = maxHp;
+    }
+
+    /// <summary>
+    /// Prints the current health of the player
+    /// </summary>
+    public void PrintHealth() => Console.WriteLine($"{name} has {hp} / {maxHp} health");
+}
