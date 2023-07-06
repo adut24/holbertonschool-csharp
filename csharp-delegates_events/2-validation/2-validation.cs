@@ -45,7 +45,9 @@ public class Player
     /// <param name="damage">Damage value</param>
     public void TakeDamage(float damage)
     {
-        Console.WriteLine($"{name} takes {(damage < 0 ? 0 : damage)} damage!");
+        if (damage < 0)
+            damage = 0;
+        Console.WriteLine($"{name} takes {damage} damage!");
         CalculateHealth calculateHealth = hit => { return hp - hit; };
         ValidateHP(calculateHealth(damage));
     }
@@ -56,7 +58,9 @@ public class Player
     /// <param name="heal">Heal value</param>
     public void HealDamage(float heal)
     {
-        Console.WriteLine($"{name} heals {(heal < 0 ? 0 : heal)} HP!");
+        if (heal < 0)
+            heal = 0;
+        Console.WriteLine($"{name} heals {heal} HP!");
         CalculateHealth calculateHealth = life => { return hp + life; };
         ValidateHP(calculateHealth(heal));
     }
@@ -64,7 +68,7 @@ public class Player
     /// <summary>
     /// Checks the new health.
     /// </summary>
-    /// <param name="newHp">New </param>
+    /// <param name="newHp">New health of the player</param>
     public void ValidateHP(float newHp)
     {
         if (newHp < 0)
