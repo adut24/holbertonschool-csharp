@@ -12,8 +12,8 @@ public class Player
     /// <summary>
     /// Constructor.
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="maxHp"></param>
+    /// <param name="name">Name of the player</param>
+    /// <param name="maxHp">Max health of the player</param>
     public Player(string name = "Player", float maxHp = 100f)
     {
         if (maxHp < 0)
