@@ -33,7 +33,7 @@ public class Queue<T>
     /// <summary>
     /// Adds a node to the queue.
     /// </summary>
-    /// <param name="value"></param>
+    /// <param name="value">The value to add to the queue.</param>
     public void Enqueue(T value)
     {
         Node newNode = new Node(value);
@@ -123,7 +123,7 @@ public class Queue<T>
     /// <summary>
     /// Concatenates all values in the queue if it's String or Char.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The concatenated string.</returns>
     public string Concatenate()
     {
         if (head == null)
@@ -132,7 +132,9 @@ public class Queue<T>
             return null;
         }
 
-        if (CheckType() != typeof(string) && CheckType() != typeof(char))
+        Type queueType = CheckType();
+
+        if (queueType != typeof(string) && queueType != typeof(char))
         {
             Console.WriteLine("Concatenate is for a queue of Strings or Chars only.");
             return null;
@@ -145,7 +147,7 @@ public class Queue<T>
         {
             concatenatedValue += node.value;
 
-            if (CheckType() == typeof(string) && node.next != null)
+            if (queueType == typeof(string) && node.next != null)
                 concatenatedValue += " ";
 
             node = node.next;
