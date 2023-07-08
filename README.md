@@ -1,7 +1,11 @@
 # holbertonschool-csharp
 ![C#](https://i.imgur.com/CISqheO.jpg)
 
-This repository contains 8 projects:
+## What is this repository for?
+This repository is used for the Augmented Reality/Virtual Reality (AR/VR) specialization at Holberton School. The projects available here are made to learn different notions of the C# language from the most basics to more complicated notions.
+
+## How many projects are there?
+It contains 11 projects:
 - [C# - Hello, World](./csharp-hello_world/)
 - [C# - if/else, loops, functions](./csharp-ifelse_loops_methods/)
 - [C# - Data Structures: Arrays, Lists, Dictionaries](./csharp-arrays_lists_dictionaries/)
@@ -10,6 +14,9 @@ This repository contains 8 projects:
 - [C# - Structs, Enumerations](./csharp-structs_enums/)
 - [C# - Classes and Namespaces](./csharp-classes/)
 - [C# - Test Driven Development](./csharp-tdd/)
+- [C# - Inheritance](./csharp-inheritance/)
+- [C# - Linear Algebra](./csharp-linear_algebra/)
+- [C# - Generics](./csharp-generics/)
 
 ## Learning Objectives
 ### [C# - Hello, World](./csharp-hello_world/)
@@ -101,3 +108,41 @@ This repository contains 8 projects:
 - How to effectively name your unit tests
 - How to utilize the TDD approach
 - How to consider edge cases
+
+### [C# - Inheritance](./csharp-inheritance/)
+- What is inheritance
+- How is polymorphism achieved with inheritance
+- What is a base class
+- What is a derived class
+- How to create a derived class
+- How to override a method or property inherited from the base class
+- What is the difference between the `override` and `new` modifiers
+- What are `is`, `.GetType()`, `TypeOf()`, `.IsInstanceOfType()`, and `.IsSubclassOf()` and when to use them
+
+### [C# - Linear Algebra](./csharp-linear_algebra/)
+- What is linear algebra
+- What is a radian
+- What is a vector
+- What is a vector space
+- What is a scalar
+- What is a linear transformation
+- What is a transformation matrix
+- What is transposing
+- What is linear independence and linear dependence
+- What is a dot product and how to calculate it
+- What is a cross product and how to calculate it
+- What is a standard basis
+- What is a matrix
+- What is the identity matrix
+- What is the zero matrix
+- What is a determinant and how to calculate it
+- What is the inverse of a matrix and how to calculate it
+
+### [C# - Generics](./csharp-generics/)
+- What are generics and what are their purpose
+- What common generic classes and interfaces are provided in the .NET class library
+- When and how to create generic classes
+- When and how to create generic methods
+- How access modifiers affect a class and its members
+- What is the `default(T)` expression used for
+- What is covariance and contravariance
