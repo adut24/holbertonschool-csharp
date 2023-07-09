@@ -5,7 +5,7 @@
 This repository is used for the Augmented Reality/Virtual Reality (AR/VR) specialization at Holberton School. The projects available here are made to learn different notions of the C# language from the most basics to more complicated notions.
 
 ## How many projects are there?
-It contains 11 projects:
+It contains 13 projects:
 - [C# - Hello, World](./csharp-hello_world/)
 - [C# - if/else, loops, functions](./csharp-ifelse_loops_methods/)
 - [C# - Data Structures: Arrays, Lists, Dictionaries](./csharp-arrays_lists_dictionaries/)
@@ -17,6 +17,8 @@ It contains 11 projects:
 - [C# - Inheritance](./csharp-inheritance/)
 - [C# - Linear Algebra](./csharp-linear_algebra/)
 - [C# - Generics](./csharp-generics/)
+- [C# - Interfaces](./csharp-interfaces/)
+- [C# - Delegates, Events](./csharp-delegates_events/)
 
 ## Learning Objectives
 ### [C# - Hello, World](./csharp-hello_world/)
@@ -146,3 +148,21 @@ It contains 11 projects:
 - How access modifiers affect a class and its members
 - What is the `default(T)` expression used for
 - What is covariance and contravariance
+
+### [C# - Interfaces](./csharp-interfaces/)
+- What is an interface
+- What are interfaces used for
+- How do interfaces, classes, and structs differ
+- What is an abstract class
+- How are interfaces different from abstract classes
+- How is an interface implemented explicitly
+- What is the `as` keyword and how to use it
+
+### [C# - Delegates, Events](./csharp-delegates_events/)
+- What are delegates and how to use them
+- What are anonymous methods and how to use them
+- What is multicasting
+- What is the difference between delegates and interfaces
+- What is a callback
+- What are events and how to use them
+- What is asynchronous programming
