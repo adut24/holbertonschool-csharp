@@ -1,4 +1,5 @@
 ﻿using System;
+
 /// <summary>
 /// Represents the base to build the classes.
 /// </summary>

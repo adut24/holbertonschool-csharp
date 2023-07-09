@@ -82,7 +82,7 @@ public class Door : Base, IInteractive
 }
 
 /// <summary>
-///
+/// Represents a decoration object.
 /// </summary>
 public class Decoration : Base, IInteractive, IBreakable
 {

@@ -82,7 +82,7 @@ public class Door : Base, IInteractive
 }
 
 /// <summary>
-///
+/// Represents a decoration object.
 /// </summary>
 public class Decoration : Base, IInteractive, IBreakable
 {
@@ -190,7 +190,7 @@ public class Key : Base, ICollectable
 public class RoomObjects
 {
     /// <summary>
-    /// Interacts with the room objects.
+    /// Interacts with all the objects in the room.
     /// </summary>
     /// <param name="roomObjects">List of objects in the room</param>
     /// <param name="type">Type of interface to interact with</param>
@@ -200,23 +200,20 @@ public class RoomObjects
         {
             if (type.IsAssignableFrom(obj.GetType()))
             {
-                if (type.IsAssignableFrom(obj.GetType()))
+                if (type == typeof(IInteractive))
                 {
-                    if (type == typeof(IInteractive))
-                    {
-                        IInteractive interactiveObject = obj as IInteractive;
-                        interactiveObject.Interact();
-                    }
-                    else if (type == typeof(IBreakable))
-                    {
-                        IBreakable breakableObject = obj as IBreakable;
-                        breakableObject.Break();
-                    }
-                    else if (type == typeof(ICollectable))
-                    {
-                        ICollectable collectableObject = obj as ICollectable;
-                        collectableObject.Collect();
-                    }
+                    IInteractive interactiveObject = obj as IInteractive;
+                    interactiveObject?.Interact();
+                }
+                else if (type == typeof(IBreakable))
+                {
+                    IBreakable breakableObject = obj as IBreakable;
+                    breakableObject?.Break();
+                }
+                else
+                {
+                    ICollectable collectableObject = obj as ICollectable;
+                    collectableObject?.Collect();
                 }
             }
         }
