@@ -1,4 +1,6 @@
 .DS_Store
 **/obj/
 **/bin/
-*main.cs
+*main.*
+.vscode
+.vs
