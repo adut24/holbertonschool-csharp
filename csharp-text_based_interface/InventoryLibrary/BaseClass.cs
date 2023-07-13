@@ -1,10 +1,42 @@
-﻿
-using System;
+﻿using System;
+using System.Text.Json.Serialization;
 
-public class BaseClass
+namespace InventoryLibrary
 {
-    public string id;
-    public DateTime date_created;
-    public DateTime date_updated;
+    /// <summary>
+    /// Represents the class all the other will inherit from.
+    /// </summary>
+    public class BaseClass
+    {
+        /// <summary>
+        /// Gets or sets the id of the object.
+        /// </summary>
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date and hour the object was created
+        /// </summary>
+        [JsonPropertyName("date_created")]
+        public DateTime Date_created { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the modification date and hour of the object.
+        /// </summary>
+        [JsonPropertyName("date_updated")]
+        public DateTime Date_updated { get; set; }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public BaseClass()
+        {
+            Id = Guid.NewGuid().ToString();
+            Date_created = DateTime.Now;
+            Date_updated = Date_created;
+        }
+    }
+
 }
 
