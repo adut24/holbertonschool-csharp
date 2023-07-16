@@ -36,7 +36,11 @@ namespace InventoryLibrary
             Date_created = DateTime.Now;
             Date_updated = Date_created;
         }
+
+        /// <summary>
+        /// Updates the date updated of the
+        /// </summary>
+        /// <param name="_">Unused parameter</param>
+        public virtual void UpdateProperties(string[] _) => Date_updated = DateTime.Now;
     }
-
 }
-

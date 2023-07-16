@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using InventoryLibrary;
 using JSONStorageHelper;
 
@@ -8,7 +9,7 @@ using JSONStorageHelper;
 /// </summary>
 public class JSONStorage
 {
-    private const string filepath = "../storage/inventory_manager.json";
+    private const string FILEPATH = "../storage/inventory_manager.json";
 
     /// <summary>
     /// Dictionary containing all the objects
@@ -24,7 +25,12 @@ public class JSONStorage
     /// Returns all the objects.
     /// </summary>
     /// <returns>The dictionary containing all the objects.</returns>
-    public Dictionary<string, BaseClass> All() => objects;
+    public Dictionary<string, BaseClass> All(Type type = null)
+    {
+        if (type == null)
+            return objects;
+        return objects.Where(kvp => kvp.Value.GetType().Equals(type)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+    }
 
     /// <summary>
     /// Adds an object to the dictionary.
@@ -35,11 +41,11 @@ public class JSONStorage
     /// <summary>
     /// Saves all the objects in the JSON file.
     /// </summary>
-    public void Save() => JSONStorageUtils.Save(objects, filepath);
+    public void Save() => JSONStorageUtils.Save(objects, FILEPATH);
 
     /// <summary>
     /// Loads all the objects from the JSON file.
     /// </summary>
-    public void Load() => JSONStorageUtils.Load(objects, filepath);
+    public void Load() => JSONStorageUtils.Load(objects, FILEPATH);
 }
 

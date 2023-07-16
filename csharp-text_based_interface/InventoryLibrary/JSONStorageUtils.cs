@@ -12,8 +12,9 @@ namespace JSONStorageHelper
     /// </summary>
     public static class JSONStorageUtils
     {
-        private static readonly Dictionary<string, Type> TypeMappings = new Dictionary<string, Type>
+        private static readonly Dictionary<string, Type> _typeMappings = new Dictionary<string, Type>
         {
+            {"BaseClass", typeof(BaseClass)},
             { "Item", typeof(Item) },
             { "User", typeof(User) },
             { "Inventory", typeof(Inventory) }
@@ -42,36 +43,30 @@ namespace JSONStorageHelper
             if (!File.Exists(filePath))
                 return;
 
-            foreach (var jsonObject in JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(File.ReadAllText(filePath)))
-            {
-                if (GetObjectTypeFromKey(jsonObject.Key) == null)
-                    continue;
+            string jsonString = File.ReadAllText(filePath);
 
+            if (String.IsNullOrEmpty(jsonString))
+                return;
+
+            foreach (var jsonObject in JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonString))
+            {
                 if (JsonSerializer.Deserialize(jsonObject.Value.GetRawText(), GetObjectTypeFromKey(jsonObject.Key)) is BaseClass baseObject)
                     objects[jsonObject.Key] = baseObject;
             }
         }
 
+        /* Transforms the instance into a JSON string. */
         private static object MapToJsonObject(BaseClass obj)
         {
             Dictionary<string, object> jsonObject = new Dictionary<string, object>();
 
             foreach (var property in JsonSerializer.Deserialize<Dictionary<string, object>>(JsonSerializer.Serialize(obj, obj.GetType(), new JsonSerializerOptions { WriteIndented = true })))
-                jsonObject[property.Key] = property.Value;
+                    jsonObject[property.Key] = property.Value;
 
             return jsonObject;
         }
 
-        private static Type GetObjectTypeFromKey(string key)
-        {
-            string[] keySplit = key.Split('.');
-
-            if (keySplit.Length >= 2)
-            {
-                if (TypeMappings.ContainsKey(keySplit[0]))
-                    return TypeMappings[keySplit[0]];
-            }
-            return null;
-        }
+        /* Returns the type of an instance based on its key. */
+        private static Type GetObjectTypeFromKey(string key) => _typeMappings[key.Split('.')[0]];
     }
 }
