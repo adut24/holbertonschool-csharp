@@ -5,11 +5,6 @@ using NUnit.Framework;
 
 namespace InventoryManagement.Tests
 {
-    public static class TestHelper
-    {
-        public static string GetJsonFilePath() => Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "storage", "inventory_manager.json");
-    }
-
     [TestFixture]
     public class Tests
     {
