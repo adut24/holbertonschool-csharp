@@ -49,9 +49,9 @@ namespace ConsoleExectution
         /// <summary>
         /// Entry point of the console.
         /// </summary>
-        public void LaunchConsole()
+        public void LaunchConsole(bool runInteractiveLoop = true)
         {
-            if (Console.IsInputRedirected)
+            if (Console.IsInputRedirected || !runInteractiveLoop)
             {
                 string[] inputParts = Console.In.ReadToEnd().Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 RunCommand(inputParts);
@@ -100,7 +100,9 @@ namespace ConsoleExectution
             while (true)
             {
                 Console.Write("$ ");
-                string[] inputParts = SplitStringIgnoringDelimiters(Console.ReadLine());
+                string tmp = Console.ReadLine();
+                string[] inputParts = SplitStringIgnoringDelimiters(tmp);
+                Console.Error.WriteLine("Received input: " + tmp);
                 bool commandSuccess = false;
 
                 if (inputParts.Length == 0)
@@ -314,7 +316,7 @@ namespace ConsoleExectution
         {
             string[] splitResult = Regex.Split(input, @"(\[.*?\])|("".*?"")|\s+");
 
-            return splitResult.Where(s => !String.IsNullOrWhiteSpace(s))
+            return splitResult.Where(s => !string.IsNullOrWhiteSpace(s))
                               .Select(s => s.Trim())
                               .ToArray();
         }

@@ -29,22 +29,26 @@ namespace InventoryManagement.Tests
             "\"date_created\":\"2023-07-16T11:30:44.559012+02:00\",\"date_updated\":\"2023-07-16T11:55:11.211639+02:00\"}";
 
             // Act
-            string[] input = { "Show", className, objectId };
+            string input = "Show " + className + " " + objectId;
             string output = RunConsoleWithInput(input);
 
             // Assert
             Assert.AreEqual(expectedOutput, output.Trim());
         }
 
-        private string RunConsoleWithInput(string[] input)
+        private string RunConsoleWithInput(string input)
         {
             using (StringWriter consoleOutput = new StringWriter())
             {
                 Console.SetOut(consoleOutput);
-                Console.SetIn(new StringReader(string.Join(Environment.NewLine, input)));
-                _inventoryManager.LaunchConsole();
-                return consoleOutput.ToString();
+                using (StringReader consoleInput = new StringReader(input))
+                {
+                    Console.SetIn(consoleInput);
+                    _inventoryManager.LaunchConsole(false);
+                    return consoleOutput.ToString();
+                }
             }
         }
+
     }
 }
