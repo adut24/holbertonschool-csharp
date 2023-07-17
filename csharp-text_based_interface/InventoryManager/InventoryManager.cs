@@ -100,7 +100,6 @@ namespace ConsoleExectution
             while (true)
             {
                 Console.Write("$ ");
-
                 string[] inputParts = SplitStringIgnoringDelimiters(Console.ReadLine());
                 bool commandSuccess = false;
 
