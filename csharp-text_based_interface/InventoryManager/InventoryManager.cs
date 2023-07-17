@@ -13,37 +13,43 @@ namespace ConsoleExectution
     public class InventoryManager
     {
         private delegate bool CommandHandler(string[] input);
-        private readonly Dictionary<string, Type> _classes;
-        private readonly Dictionary<string, CommandHandler> _commandHandlers;
-        private readonly JSONStorage _fileStorage;
         private const bool COMMAND_SUCCESS = true;
         private const bool COMMAND_FAILURE = false;
         private const string INVALID_COMMAND = "Invalid command.";
+        private const string INVALID_OBJECT = "{0} is not a valid object type";
+        private const string INVALID_ID = "{0} [{1}] could not be found";
+        private const string INVALID_INPUT = "Invalid input format. Usage: {0}";
+        private const string CREATE_FORMAT = "Create [ClassName] [attribute_name] [attribute_value] [...]";
+        private const string DELETE_FORMAT = "Delete [ClassName] [instance_id]";
+        private const string MISSING_NAME = "{0} requires a \"name\" attribute";
+        private readonly Dictionary<string, Type> Classes;
+        private readonly Dictionary<string, CommandHandler> CommandHandlers;
+        private readonly JSONStorage FileStorage;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public InventoryManager()
         {
-            _classes = new Dictionary<string, Type>
-        {
-            { "BaseClass", typeof(BaseClass) },
-            { "Item", typeof(Item) },
-            { "User", typeof(User) },
-            { "Inventory", typeof(Inventory) }
-        };
-            _commandHandlers = new Dictionary<string, CommandHandler>
-        {
-            { "exit", ExitConsole },
-            { "classnames", PrintClassNames },
-            { "all", PrintAllObjects },
-            { "create", CreateInstance },
-            { "show", ShowInstance },
-            { "update", UpdateInstance },
-            { "delete", DeleteInstance }
-        };
-            _fileStorage = new JSONStorage();
-            _fileStorage.Load();
+            Classes = new Dictionary<string, Type>
+            {
+                { "BaseClass", typeof(BaseClass) },
+                { "Item", typeof(Item) },
+                { "User", typeof(User) },
+                { "Inventory", typeof(Inventory) }
+            };
+            CommandHandlers = new Dictionary<string, CommandHandler>
+            {
+                { "exit", ExitConsole },
+                { "classnames", PrintClassNames },
+                { "all", PrintAllObjects },
+                { "create", CreateInstance },
+                { "show", ShowInstance },
+                { "update", UpdateInstance },
+                { "delete", DeleteInstance }
+            };
+            FileStorage = new JSONStorage();
+            FileStorage.Load();
         }
 
         /// <summary>
@@ -83,9 +89,9 @@ namespace ConsoleExectution
         {
             string command = input[0].ToLower();
 
-            if (_commandHandlers.ContainsKey(command))
+            if (CommandHandlers.ContainsKey(command))
             {
-                CommandHandler handler = _commandHandlers[command];
+                CommandHandler handler = CommandHandlers[command];
                 handler(input);
             }
             else
@@ -100,17 +106,18 @@ namespace ConsoleExectution
             while (true)
             {
                 Console.Write("$ ");
-                string[] inputParts = SplitStringIgnoringDelimiters(Console.ReadLine());
+
                 bool commandSuccess = false;
+                string[] inputParts = SplitStringIgnoringDelimiters(Console.ReadLine());
 
                 if (inputParts.Length == 0)
                     continue;
 
                 string command = inputParts[0].ToLower();
 
-                if (_commandHandlers.ContainsKey(command))
+                if (CommandHandlers.ContainsKey(command))
                 {
-                    CommandHandler handler = _commandHandlers[command];
+                    CommandHandler handler = CommandHandlers[command];
                     commandSuccess = handler(inputParts);
                 }
                 else
@@ -126,22 +133,22 @@ namespace ConsoleExectution
         private bool ShowInstance(string[] input)
         {
             if (input.Length != 3)
-                return PrintErrorMessage("Invalid input format. Usage: Show [ClassName] [instance_id]");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, "Show [ClassName] [instance_id]"));
 
-            string className = _classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
+            string className = Classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
 
             if (string.IsNullOrEmpty(className))
-                return PrintErrorMessage($"{input[1]} is not a valid object type");
+                return PrintErrorMessage(string.Format(INVALID_OBJECT, input[1]));
 
             try
             {
-                BaseClass obj = _fileStorage.All()[className + "." + input[2]];
+                BaseClass obj = FileStorage.All()[className + "." + input[2]];
                 Console.WriteLine(JsonSerializer.Serialize(obj, obj.GetType()));
                 return COMMAND_SUCCESS;
             }
             catch (KeyNotFoundException)
             {
-                return PrintErrorMessage($"{className} [{input[2]}] could not be found");
+                return PrintErrorMessage(string.Format(INVALID_ID, className, input[2]));
             }
         }
 
@@ -149,12 +156,12 @@ namespace ConsoleExectution
         private bool PrintClassNames(string[] input)
         {
             if (input.Length > 1)
-                return PrintErrorMessage("Invalid input format. Usage: ClassNames");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, "ClassNames"));
 
-            _fileStorage.All().Keys
-            .Select(key => key.Split(".")[0])
-            .ToList()
-            .ForEach(Console.WriteLine);
+            FileStorage.All().Keys
+                       .Select(key => key.Split(".")[0])
+                       .ToList()
+                       .ForEach(Console.WriteLine);
             return COMMAND_SUCCESS;
         }
 
@@ -162,29 +169,29 @@ namespace ConsoleExectution
         private bool PrintAllObjects(string[] input)
         {
             if (input.Length > 2)
-                return PrintErrorMessage("Invalid input format. Usage: All or All [ClassName]");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, "All or All [ClassName]"));
 
             string className = null;
             bool classNameFound = false;
 
             if (input.Length == 2)
             {
-                className = _classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
+                className = Classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
                 classNameFound = !string.IsNullOrEmpty(className);
 
                 if (!classNameFound)
-                    return PrintErrorMessage($"{input[1]} is not a valid object type");
+                return PrintErrorMessage(string.Format(INVALID_OBJECT, input[1]));
             }
 
             Type objectType = null;
 
-            if (classNameFound && _classes.ContainsKey(className))
-                objectType = _classes[className];
+            if (classNameFound && Classes.ContainsKey(className))
+                objectType = Classes[className];
 
-            _fileStorage.All(objectType).Values
-                .Select(obj => JsonSerializer.Serialize(obj, obj.GetType()))
-                .ToList()
-                .ForEach(Console.WriteLine);
+            FileStorage.All(objectType).Values
+                       .Select(obj => JsonSerializer.Serialize(obj, obj.GetType()))
+                       .ToList()
+                       .ForEach(Console.WriteLine);
             return COMMAND_SUCCESS;
         }
 
@@ -195,20 +202,20 @@ namespace ConsoleExectution
 
             try
             {
-                className = _classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
+                className = Classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
             }
             catch (IndexOutOfRangeException)
             {
-                return PrintErrorMessage("Invalid input format. Usage: Create [ClassName] [attribute_name] [attribute_value] [...]");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, CREATE_FORMAT));
             }
 
             if (string.IsNullOrEmpty(className))
-                return PrintErrorMessage($"{input[1]} is not a valid object type");
+                return PrintErrorMessage(string.Format(INVALID_OBJECT, input[1]));
 
             string[] properties = input.Skip(2).ToArray();
 
             if (properties.Length < 2 && !className.Equals("BaseClass"))
-                return PrintErrorMessage("Invalid input format. Usage: Create [ClassName] [attribute_name] [attribute_value] [...]");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, CREATE_FORMAT));
 
             BaseClass newObject;
 
@@ -216,13 +223,13 @@ namespace ConsoleExectution
             {
                 case "Item":
                     if (!properties.Any(prop => prop.Equals("name", StringComparison.OrdinalIgnoreCase)))
-                        return PrintErrorMessage("Item requires a \"name\" attribute");
+                        return PrintErrorMessage(string.Format(MISSING_NAME, "Item"));
 
                     newObject = new Item(properties);
                     break;
                 case "User":
                     if (!properties.Any(prop => prop.Equals("name", StringComparison.OrdinalIgnoreCase)))
-                        return PrintErrorMessage("User requires a \"name\" attribute");
+                        return PrintErrorMessage(string.Format(MISSING_NAME, "User"));
 
                     newObject = new User(properties[1]);
                     break;
@@ -236,8 +243,8 @@ namespace ConsoleExectution
                     newObject = new BaseClass();
                     break;
             }
-            _fileStorage.New(newObject);
-            _fileStorage.Save();
+            FileStorage.New(newObject);
+            FileStorage.Save();
             Console.WriteLine(newObject.Id);
             return COMMAND_SUCCESS;
         }
@@ -256,29 +263,29 @@ namespace ConsoleExectution
 
             try
             {
-                className = _classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
+                className = Classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
             }
             catch (IndexOutOfRangeException)
             {
-                return PrintErrorMessage("Invalid input format. Usage: Update [ClassName] [instance_id] [attribute_name] [attribute_value] [...]");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, "Update [ClassName] [instance_id] [attribute_name] [attribute_value] [...]"));
             }
 
             if (string.IsNullOrEmpty(className))
-                return PrintErrorMessage($"{input[1]} is not a valid object type");
+                return PrintErrorMessage(string.Format(INVALID_OBJECT, input[1]));
 
             BaseClass obj = null;
 
             try
             {
-                obj = _fileStorage.All()[className + "." + input[2]];
+                obj = FileStorage.All()[className + "." + input[2]];
 
                 obj.UpdateProperties(input.Skip(3).ToArray());
-                _fileStorage.Save();
+                FileStorage.Save();
                 return COMMAND_SUCCESS;
             }
             catch (KeyNotFoundException)
             {
-                return PrintErrorMessage($"{className} [{input[2]}] could not be found");
+                return PrintErrorMessage(string.Format(INVALID_ID, className, input[2]));
             }
         }
 
@@ -286,26 +293,26 @@ namespace ConsoleExectution
         private bool DeleteInstance(string[] input)
         {
             if (input.Length != 3)
-                return PrintErrorMessage("Invalid input format. Usage: Delete [ClassName] [instance_id]");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, DELETE_FORMAT));
 
-            string className = _classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
+            string className = Classes.Keys.FirstOrDefault(key => key.Equals(input[1], StringComparison.OrdinalIgnoreCase));
 
             if (string.IsNullOrEmpty(className))
-                return PrintErrorMessage($"{input[1]} is not a valid object type");
+                return PrintErrorMessage(string.Format(INVALID_OBJECT, input[1]));
 
             try
             {
-                _fileStorage.All().Remove(className + "." + input[2]);
-                _fileStorage.Save();
+                FileStorage.All().Remove(className + "." + input[2]);
+                FileStorage.Save();
                 return COMMAND_SUCCESS;
             }
             catch (KeyNotFoundException)
             {
-                return PrintErrorMessage($"{className} [{input[2]}] could not be found");
+                return PrintErrorMessage(string.Format(INVALID_ID, className, input[2]));
             }
             catch (IndexOutOfRangeException)
             {
-                return PrintErrorMessage("Invalid input format. Usage: Delete [ClassName] [instance_id]");
+                return PrintErrorMessage(string.Format(INVALID_INPUT, DELETE_FORMAT));
             }
         }
 
