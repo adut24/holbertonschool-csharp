@@ -9,7 +9,6 @@ using InventoryLibrary;
 /// </summary>
 public class Item : BaseClass
 {
-    private List<string> _tags;
     private float _price;
 
     /// <summary>
@@ -38,11 +37,7 @@ public class Item : BaseClass
     /// Gets or sets the tags of an item.
     /// </summary>
     [JsonPropertyName("tags")]
-    public List<string> Tags
-    {
-        get => _tags;
-        set => _tags = value;
-    }
+    public List<string> Tags { get; set; }
 
     /// <summary>
     /// Parameterless constructor used when loading the JSON file.
@@ -74,7 +69,7 @@ public class Item : BaseClass
                     break;
                 case "tags":
                     propertyValue = propertyValue.Trim('[', ']');
-                    _tags = propertyValue.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    Tags = propertyValue.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                            .Select(tag => tag.Trim().Trim('\'', '\"'))
                            .ToList();
                     break;
@@ -109,7 +104,7 @@ public class Item : BaseClass
                     break;
                 case "tags":
                     propertyValue = propertyValue.Trim('[', ']');
-                    _tags = propertyValue.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    Tags = propertyValue.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                            .Select(tag => tag.Trim().Trim('\'', '\"'))
                            .ToList();
                     break;

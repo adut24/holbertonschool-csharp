@@ -20,7 +20,6 @@ namespace InventoryLibrary
         [JsonPropertyName("date_created")]
         public DateTime Date_created { get; set; }
 
-
         /// <summary>
         /// Gets or sets the modification date and hour of the object.
         /// </summary>

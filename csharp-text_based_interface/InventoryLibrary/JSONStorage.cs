@@ -48,4 +48,3 @@ public class JSONStorage
     /// </summary>
     public void Load() => JSONStorageUtils.Load(objects, FILEPATH);
 }
-
