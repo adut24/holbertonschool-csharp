@@ -9,9 +9,9 @@ namespace _5_print_comb
             for (int i = 0; i < 100; i++)
             {
                 if (i < 99)
-                    System.Console.Write($"{i:D2}, ");
+                    Console.Write($"{i:D2}, ");
                 else
-                    System.Console.WriteLine($"{i}");
+                    Console.WriteLine($"{i}");
             }
         }
     }
