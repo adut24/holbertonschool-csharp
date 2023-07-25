@@ -34,10 +34,24 @@ namespace InventoryManagement.Tests
         [Test]
         public void TestShowInvalidClassName()
         {
-            const string expectedOutput = "Foo is not a valid object type";
-
+            string expectedOutput = "Foo is not a valid object type";
             string output = RunConsoleWithInput("Show Foo b07ab8e4-85cb-44d4-a016-2aae7ba49604");
+            Assert.AreEqual(expectedOutput, output.Trim());
 
+            expectedOutput = "Foo is not a valid object type";
+            output = RunConsoleWithInput("Create Foo b07ab8e4-85cb-44d4-a016-2aae7ba49604");
+            Assert.AreEqual(expectedOutput, output.Trim());
+
+            expectedOutput = "Foo is not a valid object type";
+            output = RunConsoleWithInput("All Foo");
+            Assert.AreEqual(expectedOutput, output.Trim());
+
+            expectedOutput = "Foo is not a valid object type";
+            output = RunConsoleWithInput("Update Foo b07ab8e4-85cb-44d4-a016-2aae7ba49604");
+            Assert.AreEqual(expectedOutput, output.Trim());
+
+            expectedOutput = "Foo is not a valid object type";
+            output = RunConsoleWithInput("Delete Foo b07ab8e4-85cb-44d4-a016-2aae7ba49604");
             Assert.AreEqual(expectedOutput, output.Trim());
         }
 
@@ -54,10 +68,12 @@ namespace InventoryManagement.Tests
         [Test]
         public void TestShowInvalidParameters()
         {
-            const string expectedOutput = "Invalid input format. Usage: Show [ClassName] [instance_id]";
-
+            string expectedOutput = "Invalid input format. Usage: Show [ClassName] [instance_id]";
             string output = RunConsoleWithInput("Show");
+            Assert.AreEqual(expectedOutput, output.Trim());
 
+            expectedOutput = "Invalid input format. Usage: All or All [ClassName]";
+            output = RunConsoleWithInput("All Item ID");
             Assert.AreEqual(expectedOutput, output.Trim());
         }
 
