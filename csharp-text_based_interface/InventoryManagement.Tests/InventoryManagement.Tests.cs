@@ -13,7 +13,7 @@ namespace InventoryManagement.Tests
         [OneTimeSetUp]
         public void Setup()
         {
-            string parentDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", ".."));
+            string parentDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
             Directory.SetCurrentDirectory(Path.Combine(parentDirectory, "InventoryManager"));
             _inventoryManager = new InventoryManager();
         }
