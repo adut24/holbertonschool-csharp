@@ -86,7 +86,7 @@ public class Player
     }
 
     /// <summary>
-    /// Apply a <paramref name="modifier"/> to the <paramref name="baseValue"/>.
+    /// Applies a <paramref name="modifier"/> to the <paramref name="baseValue"/>.
     /// </summary>
     /// <param name="baseValue">Damage taken or healed</param>
     /// <param name="modifier">Modifier value to apply</param>
@@ -106,7 +106,7 @@ public class Player
         }
     }
 
-    /* Assign and print the status of the player. */
+    /* Assigns and print the status of the player. */
     private void CheckStatus(object sender, CurrentHPArgs e)
     {
         if (e.currentHp == maxHp)
@@ -124,12 +124,12 @@ public class Player
     }
 
     /// <summary>
-    /// Raise the event for the status.
+    /// Raises the event for the status.
     /// </summary>
     /// <param name="e">EventHandler</param>
     protected virtual void OnHPCheck(CurrentHPArgs e) => HPCheck?.Invoke(this, e);
 
-
+    /* Warns the player if the health is too low. */
     private void HPValueWarning(object sender, CurrentHPArgs e)
     {
         if (e.currentHp > 0)
@@ -179,7 +179,7 @@ public enum Modifier
 public class CurrentHPArgs : EventArgs
 {
     /// <summary>
-    /// Store the current hp of the player.
+    /// Stores the current hp of the player.
     /// </summary>
     public readonly float currentHp;
 
